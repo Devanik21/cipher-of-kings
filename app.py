@@ -1,5 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
+from streamlit_lottie import st_lottie
+import requests
 
 # ---------- Page Config ----------
 st.set_page_config(
@@ -9,65 +11,94 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ---------- Load Lottie Animation ----------
+def load_lottie(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_glyphs = load_lottie("https://lottie.host/15154c13-4531-4780-9186-4dd53cecf7a3/lqFqupAP1k.json")
+
 # ---------- Custom CSS Theme ----------
 st.markdown("""
     <style>
-    body {
-        background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-        background-color: #1a1a1a;
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
+    html, body {
+        background-color: #0d0d0d;
+        background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
         color: #e0dcbf;
+        font-family: 'Cinzel', serif;
     }
+
     .stApp {
-        background: linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%);
-        font-family: 'Garamond', serif;
+        background: linear-gradient(135deg, #0f0f0f 0%, #1b1b1b 100%);
     }
-    h1, h2, h3, h4 {
+
+    h1, h2, h3 {
         color: #e6c967 !important;
-        text-shadow: 0 0 4px #b29f57;
+        text-shadow: 0 0 8px #b29f57, 0 0 4px #7f6b2d;
+        letter-spacing: 1.5px;
     }
+
     .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
+
     textarea, .stTextInput>div>div>input {
         background-color: #2c2c2c !important;
         color: #f1e8d7 !important;
         border: 1px solid #8a7737 !important;
+        border-radius: 0px;
     }
-    button {
-        border-radius: 0px !important;
-    }
+
     .stButton>button {
-        background-color: #3d2f1b;
-        color: #ffd700;
-        border: 1px solid #b49d5b;
+        background: radial-gradient(circle, #b49d5b, #5a421d);
+        color: #fff8dc;
+        border: 2px solid #8a7737;
+        border-radius: 50%;
+        padding: 0.75rem 1.5rem;
+        font-weight: bold;
+        font-size: 1rem;
+        box-shadow: 0 0 10px #bfa85a;
         transition: 0.3s ease;
     }
+
     .stButton>button:hover {
-        background-color: #5a421d;
-        color: #fff8dc;
+        background-color: #6b502a;
+        color: #ffffff;
     }
+
     .sidebar .sidebar-content {
         background-color: #1c1c1c;
         color: #f5deb3;
     }
-    footer {
-        visibility: hidden;
+
+    hr {
+        border: 1px solid #e6c967;
+        margin: 2rem 0;
     }
+
+    footer { visibility: hidden; }
     </style>
 """, unsafe_allow_html=True)
 
 # ---------- Sidebar ----------
-st.sidebar.title("🔐 Ancient Oracle")
-api_key = st.sidebar.text_input("Gemini API Key", type="password")
+st.sidebar.title("𒀭 Ancient Oracle")
+api_key = st.sidebar.text_input("𓂀 Gemini API Key", type="password")
 
 # ---------- Title ----------
 st.markdown("""
     <div style="text-align:center;">
         <h1>📜 LostLanguages AI</h1>
-        <p style="color:#c0b283;">Unveil the whispers of forgotten worlds...</p>
+        <p style="color:#c0b283; font-size: 1.1rem;">Unveil the whispers of forgotten worlds...</p>
     </div>
 """, unsafe_allow_html=True)
+
+# ---------- Animation ----------
+st_lottie(lottie_glyphs, height=250, key="glyphs")
 
 # ---------- API Setup ----------
 if not api_key:
@@ -78,7 +109,8 @@ else:
     model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 # ---------- Input Form ----------
-st.subheader("🔍 Provide Ancient Symbols / Description")
+st.markdown("<hr>", unsafe_allow_html=True)
+st.subheader("𓆣 Provide Ancient Symbols / Description")
 user_input = st.text_area("Enter symbols, fragments, or language traits", height=200)
 
 simulate = st.checkbox("✨ Simulate a mythical conversation in this language")
@@ -107,5 +139,5 @@ if generate_btn and user_input:
             st.error(f"Something went wrong: {e}")
 
 # ---------- Footer ----------
-st.markdown("---")
+st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<div style='text-align:center; color: #b4a077;'>🔮 Crafted by the Oracle of Lost Scripts ✧</div>", unsafe_allow_html=True)
