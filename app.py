@@ -1,7 +1,5 @@
 import streamlit as st
 import google.generativeai as genai
-from streamlit_lottie import st_lottie
-import requests
 
 # ---------- Page Config ----------
 st.set_page_config(
@@ -10,15 +8,6 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
-
-# ---------- Load Lottie Animation ----------
-def load_lottie(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-lottie_glyphs = load_lottie("https://lottie.host/15154c13-4531-4780-9186-4dd53cecf7a3/lqFqupAP1k.json")
 
 # ---------- Custom CSS Theme ----------
 st.markdown("""
@@ -96,9 +85,6 @@ st.markdown("""
         <p style="color:#c0b283; font-size: 1.1rem;">Unveil the whispers of forgotten worlds...</p>
     </div>
 """, unsafe_allow_html=True)
-
-# ---------- Animation ----------
-st_lottie(lottie_glyphs, height=250, key="glyphs")
 
 # ---------- API Setup ----------
 if not api_key:
