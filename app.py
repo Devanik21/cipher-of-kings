@@ -121,7 +121,7 @@ if theme == "Ancient Parchment":
     st.markdown("""
         <style>
         .stApp {
-            background: linear-gradient(135deg, #2a251f 0%, #1c1a16 100%);
+            background: linear-gradient(135deg, #e8dcb5 0%, #d3c59e 100%);
         }
         textarea, .stTextInput>div>div>input {
             background-color: #f0e6cf !important;
@@ -178,6 +178,9 @@ with tab2:
         
         # Convert image to base64 for API
         buffered = BytesIO()
+        # Convert RGBA to RGB if needed
+        if image.mode == 'RGBA':
+            image = image.convert('RGB')
         image.save(buffered, format="JPEG")
         img_str = base64.b64encode(buffered.getvalue()).decode()
         
