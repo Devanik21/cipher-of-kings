@@ -121,7 +121,7 @@ if theme == "Ancient Parchment":
     st.markdown("""
         <style>
         .stApp {
-            background: linear-gradient(135deg, #2a251f 0%, #1c1a16 100%);
+            background: linear-gradient(135deg, #e8dcb5 0%, #d3c59e 100%);
         }
         textarea, .stTextInput>div>div>input {
             background-color: #f0e6cf !important;
@@ -188,9 +188,14 @@ with tab2:
             with st.spinner("Deciphering visual symbols..."):
                 try:
                     vision_prompt = "Describe and analyze the ancient script or symbols in this image."
-                    response = model.generate_content(
-                        ["Analyze this ancient script or symbols:", genai.types.Part(inline_data=img_str, mime_type="image/jpeg")]
-                    )
+                    
+                    # Prepare image data for Gemini API
+                    image_parts = [
+                        {"text": vision_prompt},
+                        {"image": {"data": img_str}}
+                    ]
+                    
+                    response = model.generate_content(image_parts)
                     st.session_state.user_input = response.text[:500] + "..."
                     st.success("Image analyzed! Results transferred to text input.")
                     st.experimental_rerun()
