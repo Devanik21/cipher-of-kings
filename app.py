@@ -121,7 +121,7 @@ if theme == "Ancient Parchment":
     st.markdown("""
         <style>
         .stApp {
-            background: linear-gradient(135deg, #e8dcb5 0%, #d3c59e 100%);
+            background: linear-gradient(135deg, #2a251f 0%, #1c1a16 100%);
         }
         textarea, .stTextInput>div>div>input {
             background-color: #f0e6cf !important;
