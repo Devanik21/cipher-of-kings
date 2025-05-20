@@ -462,8 +462,9 @@ with collab_expander:
             mime="application/json"
         )
 
+with st.sidebar:
+    st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 
-st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 # ---------- Footer ----------
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<div style='text-align:center; color: #b4a077;'>🔮 Crafted by the Oracle of Lost Scripts ✧</div>", unsafe_allow_html=True)
