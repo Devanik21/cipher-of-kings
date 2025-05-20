@@ -121,7 +121,7 @@ if theme == "Ancient Parchment":
     st.markdown("""
         <style>
         .stApp {
-            background: linear-gradient(135deg, #e8dcb5 0%, #d3c59e 100%);
+            background: linear-gradient(135deg, #2a251f 0%, #1c1a16 100%);
         }
         textarea, .stTextInput>div>div>input {
             background-color: #f0e6cf !important;
@@ -153,55 +153,18 @@ else:
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
-# ---- New Feature 3: Multiple Input Methods with Tabs ----
+# ---------- Multiple Input Methods with Tabs ----
 st.markdown("<hr>", unsafe_allow_html=True)
-tab1, tab2 = st.tabs(["📝 Text Input", "📷 Image Analysis"])
+st.subheader("𓆣 Provide Ancient Symbols / Description")
+user_input = st.text_area("Enter symbols, fragments, or language traits", 
+    height=150, key="user_input", 
+    value=st.session_state.get('user_input', ''))
 
-with tab1:
-    st.subheader("𓆣 Provide Ancient Symbols / Description")
-    user_input = st.text_area("Enter symbols, fragments, or language traits", 
-        height=150, key="user_input", 
-        value=st.session_state.get('user_input', ''))
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        simulate = st.checkbox("✨ Simulate conversation")
-    with col2:
-        detailed = st.checkbox("📚 Include historical context")
-
-with tab2:
-    st.subheader("🔍 Upload Image of Ancient Script")
-    uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
-    if uploaded_file is not None:
-        image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Script", use_container_width=True)
-        
-        # Convert image to base64 for API
-        buffered = BytesIO()
-        # Convert RGBA to RGB if needed
-        if image.mode == 'RGBA':
-            image = image.convert('RGB')
-        image.save(buffered, format="JPEG")
-        img_str = base64.b64encode(buffered.getvalue()).decode()
-        
-        if st.button("🔍 Analyze Image"):
-            with st.spinner("Deciphering visual symbols..."):
-                try:
-                    vision_prompt = "Describe and analyze the ancient script or symbols in this image."
-                    
-                    # Prepare image data for Gemini API
-                    image_parts = [
-                        {"text": vision_prompt},
-                        {"image": {"data": img_str}}
-                    ]
-                    
-                    response = model.generate_content(image_parts)
-                    st.session_state.user_input = response.text[:500] + "..."
-                    st.success("Image analyzed! Results transferred to text input.")
-                    st.experimental_rerun()
-                except Exception as e:
-                    st.error(f"Vision analysis error: {e}")
-
+col1, col2 = st.columns(2)
+with col1:
+    simulate = st.checkbox("✨ Simulate conversation")
+with col2:
+    detailed = st.checkbox("📚 Include historical context")
 # ---- New Feature 4: Advanced Options ----
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.subheader("⚙️ Analysis Options")
