@@ -174,7 +174,7 @@ with tab2:
     uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Script", use_column_width=True)
+        st.image(image, caption="Uploaded Script", use_container_width=True)
         
         # Convert image to base64 for API
         buffered = BytesIO()
