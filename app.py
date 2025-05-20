@@ -22,11 +22,10 @@ st.set_page_config(
 )
 
 
-
-    st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
-    st.image("a2.jpg", caption="🪞 Astral Mirror", use_container_width=True)
-    st.image("a3.jpg", caption="🪞 Astral Mirror", use_container_width=True)
-    st.image("a4.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+st.image("a2.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+st.image("a3.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+st.image("a4.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 # ---------- Custom CSS Theme ----------
 st.markdown("""
     <style>
