@@ -10,6 +10,9 @@ import time
 from datetime import datetime
 import io
 
+
+
+
 # ---------- Page Config ----------
 st.set_page_config(
     page_title="LostLanguages AI",
@@ -18,6 +21,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+
+
+    st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+    st.image("a2.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+    st.image("a3.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+    st.image("a4.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 # ---------- Custom CSS Theme ----------
 st.markdown("""
     <style>
