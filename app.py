@@ -21,10 +21,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
+with st.sidebar:
+    st.image("a2.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 st.image("a1.jpg", caption="🪞 Astral Mirror", use_container_width=True)
-st.image("a2.jpg", caption="🪞 Astral Mirror", use_container_width=True)
-st.image("a3.jpg", caption="🪞 Astral Mirror", use_container_width=True)
+
+
 st.image("a4.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 # ---------- Custom CSS Theme ----------
 st.markdown("""
@@ -461,6 +462,9 @@ with collab_expander:
             mime="application/json"
         )
 
+
+with st.sidebar:
+    st.image("a3.jpg", caption="🪞 Astral Mirror", use_container_width=True)
 # ---------- Footer ----------
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<div style='text-align:center; color: #b4a077;'>🔮 Crafted by the Oracle of Lost Scripts ✧</div>", unsafe_allow_html=True)
