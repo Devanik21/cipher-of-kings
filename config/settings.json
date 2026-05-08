@@ -1,0 +1,5 @@
+{
+    "db_path": "game_data.sqlite",
+    "hint_cost": 10,
+    "leaderboard_enabled": false
+}

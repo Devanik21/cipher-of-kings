@@ -1,0 +1,3 @@
+# Architecture Overview
+
+The narrative engine controls the flow...

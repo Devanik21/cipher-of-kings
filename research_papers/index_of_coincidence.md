@@ -1,0 +1,3 @@
+# Modern Applications of the Index of Coincidence
+
+Abstract...
